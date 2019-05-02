@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNewsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/descLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/uploadedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/default_speak"
+                    />
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/NewsImageUploadBtn"
+                    android:layout_width="64dip"
+                    android:layout_height="64dip"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:layout_alignParentRight="true"
+                    app:cb_color="@color/colorPrimary"
+                    app:cb_pressedRingWidth="8dip"/>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/NewsHeadLines"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:gravity="left"
+                android:maxLength="200"
+                android:hint="Headlines here..."
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_edit_text_states">
+            </EditText>
+            <EditText
+                android:id="@+id/NewsDescription"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_height="250dp"
+                android:layout_alignBottom="@id/NewsHeadLines"
+                android:hint="Description here..."
+                android:gravity="left"
+                android:maxLength="500"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_edit_text_states">
+            </EditText>
+
+        </LinearLayout>
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/PostNewsBtn"
+            android:layout_width="64dip"
+            android:layout_height="64dip"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:cb_color="@color/colorPrimary"
+            app:cb_pressedRingWidth="8dip"
+            />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
