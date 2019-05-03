@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -27,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.staytouch.tii.api.ApiClient;
 import com.staytouch.tii.api.ApiInterface;
 import com.staytouch.tii.models.Article;
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private FloatingActionButton addQueryFloatingActionButton;
     Animation FabOpen, FabClose, FabClockwise, FabAntiClockwise;
     boolean isFabOpen =false;
+    private static final int ACTIVITY_NUM = 0;
+
 
     private String TAG = MainActivity.class.getSimpleName();
     public static final long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -137,7 +141,22 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
 
+        setupBottomNavigationView();
+    }
 
+    /*
+     * BottomNavigationView setup.
+     */
+    private void setupBottomNavigationView(){
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottom_nav_view_bar);
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(this, bottomNavigationViewEx);
+
+
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 
     public void LoadJson(final String keyword) {

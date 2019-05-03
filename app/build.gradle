@@ -16,7 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'RestrictedApi'
+    }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,5 +45,6 @@ dependencies {
 //Times Formater
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     implementation 'com.github.markushi:circlebutton:1.1'
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 
 }

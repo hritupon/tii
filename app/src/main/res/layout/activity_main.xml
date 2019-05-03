@@ -7,8 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/colorBackground">
-
-    <android.support.v4.widget.SwipeRefreshLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,39 +47,80 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
-    <include layout="@layout/error"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/broadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin_right"
-        android:layout_marginBottom="150dp"
-        android:backgroundTint="@color/design_default_color_primary_dark"
-        app:fabSize="normal"
-        android:src="@drawable/ic_broadcast"
-        android:visibility="invisible"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addQuery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin_right"
-        android:layout_marginBottom="85dp"
-        android:backgroundTint="@color/colorAccent"
-        app:fabSize="normal"
-        android:src="@drawable/ic_add_query"
-        android:visibility="invisible"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin_right"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPrimary"
-        app:fabSize="normal"
-        android:src="@drawable/ic_fab"
-        android:elevation="6dp"
-        app:pressedTranslationZ="16dp"/>
+        <include layout="@layout/error"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true">
+           <android.support.design.widget.FloatingActionButton
+               android:id="@+id/broadcast"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="bottom|end"
+               android:layout_marginRight="@dimen/fab_margin_right"
+               android:layout_marginBottom="180dp"
+               android:backgroundTint="@color/design_default_color_primary"
+               app:fabSize="normal"
+               android:src="@drawable/ic_broadcast"
+               android:visibility="invisible"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentBottom="true"
+            />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/addQuery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="@dimen/fab_margin_right"
+                android:layout_marginBottom="120dp"
+                android:backgroundTint="@color/dark_slate_blue"
+                app:fabSize="normal"
+                android:src="@drawable/ic_add_query"
+                android:visibility="invisible"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+
+                />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="@dimen/fab_margin_right"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:fabSize="normal"
+                android:src="@drawable/ic_fab"
+                android:elevation="6dp"
+                app:pressedTranslationZ="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/bottom_bar"
+            android:layout_alignParentBottom="true" >
+            <!--        <android.support.design.widget.BottomNavigationView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bottom_nav_view_bar"
+                        android:background="@drawable/white_grey_border_bottom"
+                        app:menu="@menu/bottom_navigation_menu">
+                    </android.support.design.widget.BottomNavigationView>-->
+            <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bottom_nav_view_bar"
+                android:background="@drawable/white_grey_border_bottom"
+                app:menu="@menu/bottom_navigation_menu"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>
