@@ -6,9 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddNewsActivity">
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
         <LinearLayout
             android:id="@+id/descLayout"
             android:layout_width="fill_parent"
@@ -17,7 +18,7 @@
             android:focusableInTouchMode="true">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/uploadedImage"
                     android:layout_width="match_parent"
@@ -64,7 +65,8 @@
                 android:gravity="left"
                 android:maxLength="500"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/round_edit_text_states">
+                android:background="@drawable/round_edit_text_states"
+                android:layout_weight="1">
             </EditText>
 
         </LinearLayout>
@@ -78,8 +80,9 @@
             android:layout_centerHorizontal="true"
             app:cb_color="@color/colorPrimary"
             app:cb_pressedRingWidth="8dip"
+            android:layout_gravity="center"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

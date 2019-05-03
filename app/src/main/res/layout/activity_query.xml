@@ -6,7 +6,8 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".QueryActivity">
-<RelativeLayout
+
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,11 +20,13 @@ tools:context=".QueryActivity">
         android:gravity="top"
         android:maxLength="500"
         android:padding="10dp"
+        android:layout_weight="1"
         android:background="@drawable/round_edit_text_states">
     </EditText>
 
     <at.markushi.ui.CircleButton
         android:id="@+id/addQueryBtn"
+        android:layout_below="@id/query"
         android:layout_width="64dip"
         android:layout_height="64dip"
         android:src="@android:drawable/ic_menu_send"
@@ -31,8 +34,9 @@ tools:context=".QueryActivity">
         android:layout_centerHorizontal="true"
         app:cb_color="@color/colorPrimary"
         app:cb_pressedRingWidth="8dip"
+        android:layout_gravity="center"
         />
 
-</RelativeLayout>
+</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
