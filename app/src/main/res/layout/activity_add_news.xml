@@ -22,9 +22,15 @@
                     android:id="@+id/uploadedImage"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     android:src="@drawable/default_speak"
+
+                     android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    android:transitionName="img"
+                    tools:ignore="UnusedAttribute"
+
                     />
                 <at.markushi.ui.CircleButton
                     android:id="@+id/NewsImageUploadBtn"

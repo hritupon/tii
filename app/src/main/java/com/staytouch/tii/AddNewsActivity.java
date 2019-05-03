@@ -1,6 +1,8 @@
 package com.staytouch.tii;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -30,6 +32,7 @@ public class AddNewsActivity extends AppCompatActivity {
     private CircleButton newsImageUploadBtn;
     private ImageView uploadedImage;
     private static final int CAMERA_REQUEST=1001;
+    private static final int SELECT_FILE=1002;
     private static String imageFilePath;
     private static final String AUTHORITY = BuildConfig.APPLICATION_ID+".provider";
     private EditText newsHeadLinesEditText;
@@ -48,7 +51,7 @@ public class AddNewsActivity extends AppCompatActivity {
         newsImageUploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                takePhoto();
+                selectImage();
             }
         });
         if(imageFilePath!=null){
@@ -56,32 +59,19 @@ public class AddNewsActivity extends AppCompatActivity {
         }
     }
 
-    private void takePhoto() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getPackageManager()) != null){
-            //Create a file to store the image
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-            }
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,AUTHORITY,photoFile);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        photoURI);
-                startActivityForResult(intent,CAMERA_REQUEST);
-            }
-        }
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CAMERA_REQUEST){
-            if (resultCode == Activity.RESULT_OK) {
-                Glide.with(this).load(imageFilePath).into(uploadedImage);
+        if(resultCode==Activity.RESULT_OK){
+            if(requestCode==CAMERA_REQUEST){
+               Glide.with(this).load(imageFilePath).into(uploadedImage);
+            }
+            else if(requestCode==SELECT_FILE){
+                Uri selectedImageUri = data.getData();
+                Glide.with(this).load(selectedImageUri).into(uploadedImage);
             }
         }
+
     }
 
     @Override
@@ -111,5 +101,46 @@ public class AddNewsActivity extends AppCompatActivity {
 
         imageFilePath = image.getAbsolutePath();
         return image;
+    }
+
+    private void selectImage(){
+        final CharSequence[] items ={"Camera", "Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddNewsActivity.this);
+        builder.setTitle("Add Image");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(items[which].equals("Camera")){
+                    takePhoto();
+                }else if(items[which].equals("Gallery")){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent.createChooser(intent, "Select File"), SELECT_FILE);
+                } else if(items[which].equals("Cancel")){
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void takePhoto(){
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            //Create a file to store the image
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,AUTHORITY,photoFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        photoURI);
+                startActivityForResult(intent,CAMERA_REQUEST);
+            }
+        }
     }
 }
